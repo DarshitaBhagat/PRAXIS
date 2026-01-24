@@ -7,7 +7,7 @@ import time
 
 st.title("AI Bicep Curl Counter")
 
-run = st.checkbox("Start Camera")
+start = st.checkbox("Start Camera")
 FRAME = st.image([])
 
 
@@ -20,21 +20,23 @@ if "counter" not in st.session_state:
 if "stage" not in st.session_state:
     st.session_state.stage = None
 
-def calculate_angle(a, b, c):
-    a = np.array(a)
-    b = np.array(b)
-    c = np.array(c)
+def calculate_angle(a,b,c):
+    a=np.array(a)
+    b=np.array(b)
+    c=np.array(c)
 
-    ba = a - b
-    bc = c - b
+    radians = np.arctan2(c[1]-b[1],c[0]-b[0]) - np.arctan2(a[1]-b[1],a[0]-b[0])
+    angle = np.abs(radians*180.0/np.pi)
 
-    cosine = np.dot(ba, bc) / (np.linalg.norm(ba)*np.linalg.norm(bc))
-    angle = np.arccos(cosine)
-    return np.degrees(angle)
+    if angle >180.0:
+        angle=360-angle
+
+    return angle
+
 
 cap = cv2.VideoCapture(0)
 
-while run:
+while start:
     ret, frame = cap.read()
     if not ret:
         break
@@ -58,14 +60,14 @@ while run:
             st.session_state.stage = "up"
             st.session_state.counter += 1
 
-        
+        '''
         cv2.putText(frame, f"Angle: {int(angle)}",
                     (30,40), cv2.FONT_HERSHEY_SIMPLEX,
                     1, (0,255,0), 2)
 
     cv2.putText(frame, f"Reps: {st.session_state.counter}",
                 (30,80), cv2.FONT_HERSHEY_SIMPLEX,
-                1.2, (255,0,0), 2)
+                1.2, (255,0,0), 2)'''
 
     frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
     FRAME.image(frame)
