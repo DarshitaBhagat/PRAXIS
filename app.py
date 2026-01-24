@@ -60,18 +60,10 @@ while start:
             st.session_state.stage = "up"
             st.session_state.counter += 1
 
-        st.write(f"Reps: {st.session_state.counter}")
+            st.write(f"Reps: {st.session_state.counter}")
         st.write(f"Angle: {int(angle)}")
 
-    '''
-        cv2.putText(frame, f"Angle: {int(angle)}",
-                    (30,40), cv2.FONT_HERSHEY_SIMPLEX,
-                    1, (0,255,0), 2)
-
-        cv2.putText(frame, f"Reps: {st.session_state.counter}",
-                (30,80), cv2.FONT_HERSHEY_SIMPLEX,
-                1.2, (255,0,0), 2)
-'''
+    
     frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
     FRAME.image(frame)
 
