@@ -1,4 +1,4 @@
-##🏋️ Praxis — AI-Powered Workout Coach
+## Praxis — AI-Powered Workout Coach
 
 Praxis is a real-time computer vision system that detects exercises, tracks repetitions, evaluates form, and provides instant feedback — turning a simple workout tracker into an intelligent fitness assistant.
 
